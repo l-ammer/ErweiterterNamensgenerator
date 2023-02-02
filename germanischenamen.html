@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alberich-Verlag - Germanische Namen</title>
+	<link rel="icon" type="image/x-icon" href="pngs/Alberich A (transparent).ico">
+	<link rel="stylesheet" href="alberich-css.css">
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<!--<script src="main_script.js" async></script>-->
+			
+  </head>
+  <body>
+	
+	<h2>Zufällige Namen erzeugen</h2>
+	  
+	<div style="text-align: center; display: grid; grid-template-columns: 3fr 2fr 2fr 3fr ">
+		<div style="max-width: 90%; margin:0 auto; grid-column: 2/3;">
+			<p id="name_m" style="font-size: 1.5em; font-weight: bold"></p>
+			<p id="bedeutung_m"></p>
+			<button type="button" class="auswahlbtn" onclick="generate(0)">Männernamen erzeugen...</button>
+			<div style="text-align: center; display: grid; grid-template-columns: 1fr 1fr ">
+				<div style="max-width: 90%; margin:0 auto; grid-column: 1/2;">
+					<p>Fixe Vorsilbe:<br>
+					<input type="text" id="vorsilbem" name="rechnungsadresse" placeholder="..."></p>
+					<p>Fixe Bedeutung:<br>
+					<input type="text" id="vorsilbebedeutungm" name="rechnungsadresse" placeholder="..."></p>
+				</div>
+				<div style="max-width: 90%; margin:0 auto; grid-column: 2/3;">
+					<p>Fixe Nachsilbe:<br>
+					<input type="text" id="nachsilbem" name="rechnungsadresse" placeholder="..."></p>
+					<p>Fixe Bedeutung:<br>
+					<input type="text" id="nachsilbebedeutungm" name="rechnungsadresse" placeholder="..."></p>
+				</div>
+			</div>
+		</div>
+		<div style="max-width: 90%; margin:0 auto; grid-column: 3/4;">
+			<p id="name_w" style="font-size: 1.5em; font-weight: bold"></p>
+			<p id="bedeutung_w"></p>
+			<button type="button" class="auswahlbtn" onclick="generate(1)">Frauennamen erzeugen...</button>
+			<div style="text-align: center; display: grid; grid-template-columns: 1fr 1fr ">
+				<div style="max-width: 90%; margin:0 auto; grid-column: 1/2;">
+					<p>Fixe Vorsilbe:<br>
+					<input type="text" id="vorsilbew" name="rechnungsadresse" placeholder="..."></p>
+					<p>Fixe Bedeutung:<br>
+					<input type="text" id="vorsilbebedeutungw" name="rechnungsadresse" placeholder="..."></p>
+				</div>
+				<div style="max-width: 90%; margin:0 auto; grid-column: 2/3;">
+					<p>Fixe Nachsilbe:<br>
+					<input type="text" id="nachsilbew" name="rechnungsadresse" placeholder="..."></p>
+					<p>Fixe Bedeutung:<br>
+					<input type="text" id="nachsilbebedeutungw" name="rechnungsadresse" placeholder="..."></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	  
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+		<script>
+			
+			const silben = [[
+				//Männlich
+				//Vorsilben
+				["Ad", "Adel", "Agi", "Agil", "Al", "Alb", "Alf", "Amal", "Ang", "Ans", "Ari", "Arm", "Arn", "As", "Bald", "Ber", "Bern", "Bert", "Bod", "Brand", "Brun", "Burg", "Dag", "Dank", "Diet", "E", "Ed", "Eg", "Egi", "Egil", "Egt", "Ek", "El", "Elf", "Emm", "Eng", "Er", "Erl", "Ern", "Falk", "Fried", "Fro", "Gar", "Ger", "Gil", "Gild", "Gisel", "God", "Gott", "Gud", "Gun", "Gund", "Had", "Hag", "Har", "Hart", "Heid", "Heim", "Hein", "Hel", "Helf", "Helm", "Her", "Hild", "Holm", "Hold", "Hu", "Hug", "Hut", "Ing", "Irm", "Is", "Karl", "Kon", "Kun", "Land", "Leo", "Lieb", "Lud", "Man", "Mar", "Mark", "Mat", "Mein", "Mild", "Mut", "Nor", "Not", "Od", "Ort", "Os", "Ot", "Rad", "Ram", "Ran", "Regin", "Rein", "Rem", "Ren", "Rich", "Ro", "Rod", "Rud", "Sieg", "Sonn", "Stark", "Thor", "Tor", "Ul", "Ut", "Volk", "Wal", "Wald", "Wer", "Wid", "Wig", "Wil", "Will", "Win", "Wis", "Wit", "Wol", "Wolf"], 
+				//Nachsilben
+				["ald" , "alf" , "bald" , "bart" , "bern" , "bert" , "bod" , "brand" , "brecht" , "burg" , "dag" , "eg" , "ek" , "fast" , "fons" , "fred" , "fried" , "gar" , "gast" , "ger" , "gil" , "gild" , "grim" , "hart" , "helf" , "helm" , "her" , "hold" , "hut" , "kar" , "kind" , "leib" , "lieb" , "man" , "mar" , "mer" , "mir" , "mund" , "mut" , "not" , "old" , "olf" , "rad" , "ram" , "red" , "rich" , "stan" , "staf" , "thor" , "tor" , "ulf" , "wald" , "wart" , "wer" , "wig" , "wil" , "win" , "wis" , "wolf"], 
+				//Vorsilben Bedeutung
+				["Reicher ", "Edler ", "Schrecklicher ", "Schwerttragender ", "Vollkommener ", "Der Elfen ", "Der Elfen ", "Tugendhafter ", "Junger ", "Der Asen ", "Des Heeres ", "Großer ", "Adlerhafter ", "Der Asen ", "Kühner ", "Bärenhafter ", "Bärenhafter ", "Berühmter ", "Gebietender ", "Leuchtender ", "Gerüsteter ", "Schützender ", "Tauglicher ", "Denkender ", "Des Volkes ", "Des Rechtes  ", "Glücklicher ", "Treuer ", "Schrecklicher ", "Schwerttragender ", "Rechtschaffener ", "Schwerttragender ", "Schwerttragender ", "Der Elfen ", "Großer ", "Junger ", "Ehrenfafter ", "Edler ", "Entschlossener ", "Falkenhafter ", "Friedbringender ", "Froher ", "Großer ", "Speertragender ", "Edelstämmiger ", "Wertvoller ", "Edelstämmiger ", "Der Götter ", "Der Götter ", "Der Götter ", "Kampf-", "Kampf-", "Kampf-", "Schützender ", "Heer-", "Unbeugsamer ", "Wesen des ", "Der Heimat ", "Der Heimat ", "Heller ", "Helfender ", "Schützender ", "Heer-", "Heldischer ", "Des Eilands ", "Treuer ", "Kluger ", "Kluger ", "Schützender ", "Junger ", "Großer ", "Eiserner ", "Freier ", "Kühner ", "Kühner ", "Des Landes ", "Löwenhafter ", "Angenehmer ", "Des Volkes ", "Der Männer ", "Fürstlicher ", "Der Grenze ", "Mächtiger ", "Mächtiger ", "Sanfter ", "Mutiger ", "Des Nordens ", "Der Bedrängnis ", "Reicher ", "Des Speeres " , "Der Asen ", "Reicher ", "Ratkundiger ", "Rabenhafter ", "Ratkundiger ", "Ratkundiger ", "Reiner ", "Ratkundiger ", "Reiner ", "Königlicher ", "Ruhmreicher ", "Ruhmreicher ", "Ruhmreicher ", "Siegreicher ", "Sonnengleicher ", "Starker ", "Donnergleicher ", "Donnergleicher ", "Edelstämmiger ", "Reicher ", "Des Volkes ", "Krieger-", "Waltender ", "Wehrhafter ", "Des Waldes ", "Krieger-", "Großer ", "Willensstarker ", "Des Freundes ", "Weiser ", "Weiser ", "Guter ", "Wolfsgleicher "], 
+				//Nachsilben Bedeutung
+				["Herrscher", "Elf" , "Mut" , "Axtkämpfer" , "Sohn" , "Ruhm" , "Gebieter" , "Licht" , "Ruhm" , "Retter" , "Tag" , "Schwert" , "Schwert" , "Festigkeit" , "Bereitschaft" , "Friedensbringer" , "Friedensbringer" , "Speer" , "Gast" , "Speer" , "Edeling" , "Geschätzter" , "Helm" , "Stärke" , "Hilfe" , "Schutz" , "Heer"  , "Treue" , "Schutz" , "Speer" , "Verkörperung" , "Verkörperung" , "Freund" , "Mann" , "Fürst" , "Fürst" , "Fürst" , "Vorsteher" , "Mut" , "Kampf" , "Herrscher" , "Wolf" , "Berater" , "Rabe" , "Berater" , "König" , "Stand" , "Stütze" , "Recke" , "Recke" , "Wolf" , "Herrscher" , "Wärter" , "Mann" , "Krieger" , "Wille" , "Freund" , "Weiser" , "Wolf"]], 
+				//Weiblich	
+				//Vorsilben
+				[["Ad" ,"Adel" ,"Al" ,"Alb" ,"Alf" ,"Amal" ,"Ang" ,"Ans" ,"Arm" ,"As" ,"Ber" ,"Bern" ,"Bert" ,"Brand" ,"Brun" ,"Burg" ,"Dag" ,"Dank" ,"Diet" ,"E" ,"Ed" ,"Eg" ,"Egt" ,"Elf" ,"Emm" ,"Eng" ,"Er" ,"Erl" ,"Ern" ,"Fried" ,"Fro" ,"Ger" ,"Gil" ,"Gild" ,"Gisel" ,"God" ,"Gott" ,"Gud" ,"Gun" ,"Gund" ,"Heid" ,"Heim" ,"Hein" ,"Hel" ,"Helf" ,"Helm" ,"Hild" ,"Holm" ,"Hold" ,"Hu" ,"Hug" ,"Ing" ,"Irm" ,"Is" ,"Kon" ,"Kun" ,"Land" ,"Lieb" ,"Lud" ,"Mar" ,"Mat" ,"Mein" ,"Mild" ,"Mut" ,"Nor" ,"Not" ,"Od" ,"Os" ,"Ot" ,"Ran" ,"Regin" ,"Rein" ,"Rem" ,"Ren" ,"Rich" ,"Run" ,"Schwan" ,"Sieg" ,"Sonn" ,"Sun" ,"Thor" ,"Tor" ,"Trud" ,"Ul" ,"Ut" ,"Wal" ,"Wid" ,"Wil" ,"Will" ,"Win" ,"Wis" ,"Wit" ,"Wol"], 
+				 //Nachsilben
+				["berna" ,"berta" , "boda" , "brechta" , "burga" , "daga" , "frede" , "friede" , "friede" , "friede" , "gard" , "gard" , "gilde" , "gunde" , "heid" , "heid" , "heid" , "hilde" , "hilde" , "hilde" , "ke" , "kind" , "leib" , "lieb" , "lind" , "lind" , "lind" , "milde" , "run" , "run" , "run" , "swinta" , "tje" , "traut" , "trud" , "wil" , "wina" , "wis" , "a" , "a" , "a" , "a" , "a" , "a"], 
+				 //Vorsilben Bedeutung
+				["Reiche " , "Edle " , "Vollkommene " , "Der Elfen " , "Der Elfen " , "Tugendhafte " , "Junge " , "Der Asen " , "Große " , "Der Asen " , "Bärenhafte " , "Bärenhafte " , "Berühmte " , "Leuchtende " , "Gerüstete " , "Schützende " , "Taugliche " , "Denkende " , "Des Volke " , "Ordnende " , "Glückliche " , "Treue " , "Rechtschaffene " , "Der Elfen " , "Große " , "Junge " , "Ehrenhafte " , "Edle " , "Entschlossene " , "Friedbringende " , "Frohe " , "Speertragende " , "Edelstämmige " , "Wertvolle " , "Edelstämmige " , "Der Götter " , "Der Götter " , "Der Götter " , "Kampf-" , "Kampf-" , "Wesen der " , "Der Heimat " , "Der Heimat " , "Helle " , "Helfende " , "Schützende " , "Kämpfende " , "Des Eilands " , "Treue " , "Kluge " , "Kluge " , "Junge " , "Große " , "Eiserne " , "Kühne " , "Kühne " , "Des Landes " , "Angenehme " , "Des Volkes " , "Fürstliche " , "Mächtige " , "Mächtige " , "Sanfte " , "Mutige " , "Des Nordens " , "Der Bedrängnis " , "Reiche " , "Der Asen " , "Reiche " , "Ratkundige " , "Ratkundige " , "Reine " , "Ratkundige " , "Reine " , "Des Königs " , "Wissende " , "Schwanengleiche " , "Siegbringende " , "Sonnengleiche " , "Sonnengleiche " , "Des Donars " , "Des Donars " , "Geliebte " , "Edelstämmige " , "Reiche " , "Krieger-" , "Des Waldes " , "Große " , "Willensstarke " , "Des Freundes " , "Weise " , "Weise " , "Gute "],
+				 //Nachsilben Bedeutung
+				["Geburt" , "Ruhm" , "Gebieterin" , "Ruhm" , "Retterin" , "Tag" , "Friedensbringerin" , "Friedensbringerin" , "Friedensbringerin" , "Friedensbringerin" , "Wächterin" , "Wächterin" , "Geschätzte" , "Kampf" , "Wesen" , "Wesen" , "Wesen" , "Kämpferin" , "Kämpferin" , "Kämpferin" , "Kleine" , "Verkörperung" , "Verkörperung" , "Freundin" , "Milde" , "Milde" , "Milde" , "Milde" , "Wissende" , "Wissende" , "Wissende" , "Stärke" , "Kleine" , "Geliebte" , "Geliebte" , "Wille" , "Freundin" , "Weise" , "Frau" , "Frau" , "Frau" , "Frau" , "Frau" , "Frau"]]]; 
+
+			// generate a number between 0 (inclusive) and max (exclusive)
+			function rand(max) {
+				return Math.floor(Math.random() * max);
+			}
+
+			function picRandom(array) {
+				return rand(array.length);
+			}
+
+			function generate(geschlecht) {
+				const vorsilbenarray = silben[geschlecht][0]; 
+				const nachsilbenarray = silben[geschlecht][1];
+				const vorbedeutungsarray = silben[geschlecht][2]; 
+				const nachbedeutungsarray = silben[geschlecht][3]; 
+				const nameElementM = document.getElementById("name_m");
+				const nameElementW = document.getElementById("name_w");
+				const bedeutungElementM = document.getElementById("bedeutung_m");
+				const bedeutungElementW = document.getElementById("bedeutung_w");
+				
+				var zufallvor = picRandom(vorsilbenarray);
+				var zufallnach = picRandom(nachsilbenarray);
+				var vorsilbe = "";
+				var nachsilbe = "";
+				var vorbedeutung = "";
+				var nachbedeutung = "";
+	
+				const fixVorsilbeM = document.getElementById("vorsilbem").value;
+				const fixNachsilbeM = document.getElementById("nachsilbem").value;
+				const fixVorsilbeBedeutungM = document.getElementById("vorsilbebedeutungm").value;
+				const fixNachsilbeBedeutungM = document.getElementById("nachsilbebedeutungm").value;
+				const fixVorsilbeW = document.getElementById("vorsilbew").value;
+				const fixNachsilbeW = document.getElementById("nachsilbew").value;
+				const fixVorsilbeBedeutungW = document.getElementById("vorsilbebedeutungw").value;
+				const fixNachsilbeBedeutungW = document.getElementById("nachsilbebedeutungw").value;
+				
+				var vorsilbe = vorsilbenarray[zufallvor]
+				var nachsilbe = nachsilbenarray[zufallnach];
+				var vorbedeutung = vorbedeutungsarray[zufallvor]
+				var nachbedeutung = nachbedeutungsarray[zufallnach];
+				
+				if (geschlecht) {
+					if (fixVorsilbeW != null && fixVorsilbeW != "") {
+						vorsilbe = fixVorsilbeW;
+					}
+					if (fixNachsilbeW != null && fixNachsilbeW != "") {
+						nachsilbe = fixNachsilbeW;
+					}
+					if (fixVorsilbeBedeutungW != null && fixVorsilbeBedeutungW != "") {
+						vorbedeutung = fixVorsilbeBedeutungW + " ";
+					}
+					if (fixNachsilbeBedeutungW != null && fixNachsilbeBedeutungW != "") {
+						nachbedeutung = fixNachsilbeBedeutungW;
+					}
+				}
+				else {
+					if (fixVorsilbeM != null && fixVorsilbeM != "") {
+						vorsilbe = fixVorsilbeM;
+					}
+					if (fixNachsilbeM != null && fixNachsilbeM != "") {
+						nachsilbe = fixNachsilbeM;
+					}
+					if (fixVorsilbeBedeutungM != null & fixVorsilbeBedeutungM != "") {
+						vorbedeutung = fixVorsilbeBedeutungM + " ";
+					}
+					if (fixNachsilbeBedeutungM != null && fixNachsilbeBedeutungM != "") {
+						nachbedeutung = fixNachsilbeBedeutungM;
+					}
+				}
+
+				var name = vorsilbe + nachsilbe;
+				var bedeutung = vorbedeutung + nachbedeutung;
+				
+				if (geschlecht) {
+					nameElementW.innerText = name;
+					bedeutungElementW.innerText = "Bedeutung: " + bedeutung + "";
+				}
+				else {
+					nameElementM.innerText = name;
+					bedeutungElementM.innerText = "Bedeutung: " + bedeutung + "";
+				}
+			}
+
+			generate(0);
+			generate(1);
+		</script>  
+  </body>
+</html>
